@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sucursales de <%= empresa.nombre %></title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    p {
+      text-align: center;
+      font-size: 1.1em;
+      color: #555;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    li {
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      font-size: 1em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+
+    strong {
+      color: #555;
+    }
+
+    a {
+      color: #5c67f2;
+      text-decoration: none;
+      margin-left: 10px;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #3f4bcd;
+      text-decoration: underline;
+    }
+
+    button {
+      background-color: #5c67f2;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-align: center;
+      display: inline-block;
+      margin: 20px 0;
+    }
+
+    button:hover {
+      background-color: #3f4bcd;
+    }
+
+    @media (min-width: 600px) {
+      ul {
+        width: 500px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Sucursales de la Empresa: <%= empresa.nombre %></h1>
+  <p><strong>Dirección:</strong> <%= empresa.direccion %></p>
+
+  <h2>Sucursales:</h2>
+  <ul>
+    <% if (sucursales.length > 0) { %>
+      <% sucursales.forEach(sucursal => { %>
+        <li>
+          <div>
+            <strong>Descripción:</strong> <%= sucursal.descripcion %> - 
+            <strong>Encargado:</strong> <%= sucursal.encargado %> - 
+            <strong>Teléfono:</strong> <%= sucursal.telefono %>
+          </div>
+          <div>
+            <a href="/empresa/<%= empresa.idEmpresa %>/sucursal/<%= sucursal.idSucursal %>/editar">Editar</a> | 
+            <a href="/empresa/<%= empresa.idEmpresa %>/sucursal/<%= sucursal.idSucursal %>/eliminar">Eliminar</a>
+          </div>
+        </li>
+      <% }) %>
+    <% } else { %>
+      <li>No hay sucursales registradas para esta empresa.</li>
+    <% } %>
+
+      <!-- Botón para agregar sucursal siempre visible -->
+  <a href="/empresa/<%= empresa.idEmpresa %>/agregarSucursal" class="button">Agregar Sucursal</a>
+  <br>
+
+  </ul>
+
+  <a href="/">Volver al listado de empresas</a>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Empresas y Sucursales</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #5c67f2;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      width: 100%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #3f4bcd;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 20px auto;
+      width: 300px;
+    }
+
+    li {
+      background-color: white;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    a {
+      color: #5c67f2;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (min-width: 600px) {
+      form, ul {
+        width: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Registro de Empresa</h1>
+  <form action="/addEmpresa" method="POST">
+    <label for="idEmpresa">ID Empresa:</label>
+    <input type="text" name="idEmpresa" required>
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" required>
+
+    <label for="direccion">Dirección:</label>
+    <input type="text" name="direccion" required>
+
+    <label for="direccionfacturacion">Dirección de Facturación:</label>
+    <input type="text" name="direccionfacturacion">
+
+    <label for="representantelegal">Representante Legal:</label>
+    <input type="text" name="representantelegal">
+
+    <label for="telefono">Teléfono:</label>
+    <input type="text" name="telefono">
+
+    <label for="correoelectronico">Correo Electrónico:</label>
+    <input type="email" name="correoelectronico">
+
+    <label for="codigopostal">Código Postal:</label>
+    <input type="text" name="codigopostal">
+
+    <label for="estado">Estado:</label>
+    <input type="text" name="estado" required>
+
+    <label for="principal">Principal:</label>
+    <input type="text" name="principal" required>
+
+    <label for="adiciono">Adicionó:</label>
+    <input type="text" name="adiciono" required>
+
+    <button type="submit">Registrar Empresa</button>
+  </form>
+
+  <h2>Empresas Registradas</h2>
+  <ul>
+    <% empresas.forEach(empresa => { %>
+      <li>
+        <%= empresa.nombre %> - <%= empresa.direccion %>
+        <a href="/empresa/<%= empresa.idEmpresa %>/sucursales">Ver Sucursales</a>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
